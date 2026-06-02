@@ -1,5 +1,5 @@
 (ns clojure-app.core
-  (:require [clojure_app.view :as view]
+  (:require [clojure_app.view    :as view]
             [clojure_app.service :as service])
   (:gen-class)
 )
@@ -16,20 +16,29 @@
   )
 )
 
+
 (defn main_loop []
-  (view/menu)
+  (view/print_msg "\n=======================================")
+  (view/print_msg "       CALCULADORA DE CALORIAS           ")
+  (view/print_msg "=======================================\n")
+  (view/print_msg "1. Cadastrar/Consultar dados pessoais")
+  (view/print_msg "2. Registrar consumo de alimento (Ganho)")
+  (view/print_msg "3. Registrar atividade fisica (Perda)")
+  (view/print_msg "4. Consultar extrato de transacoes")
+  (view/print_msg "5. Consultar saldo de calorias")
+  (view/print_msg "0. Sair")
   (view/print_msg "\nDigite a opcao desejada: ")
 
   (let [option (view/read_input)]
     (execute option)
     (if (= option "0")
-     (println "\nPrograma finalizado.")
+     (view/print_msg "\nPrograma finalizado.")
      (recur)
     )
   )
 )
 
+
 (defn -main [& args]
-  (view/title)
   (main_loop)
 )
