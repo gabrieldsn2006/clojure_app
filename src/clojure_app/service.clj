@@ -100,10 +100,10 @@
 
   (let [option (view/read_input)]
     (case option
-      "1" (view/print_msg (api/get_req "http://localhost:3000/statement")) ; TODO GET
+      "1" (view/print_msg (api/get_req "http://localhost:3000/transactions")) ; TODO GET
       "2" (let [start_date (view/read_with_msg "Data Inicial (dd/MM/yyyy): ")
                 end_date   (view/read_with_msg "Data Final (dd/MM/yyyy): ")]
-        (view/print_msg (api/post_req "http://localhost:3000/statement"
+        (view/print_msg (api/post_req "http://localhost:3000/transactions"
                                       {:start_date start_date :end_date end_date})) ; TODO POST
       )
       "0" nil ; voltar para o menu
