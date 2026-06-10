@@ -9,7 +9,7 @@
     "1" (service/user_data)
     "2" (service/food)
     "3" (service/activity)
-    "4" (service/statement)
+    "4" (service/transactions)
     "5" (service/balance)
     "0" (view/print_msg "Saindo da aplicacao... Ate logo!")
     (view/print_msg "Opcao Invalida!")

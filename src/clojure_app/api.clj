@@ -5,14 +5,12 @@
 
 
 (defn get_req [endpoint]
-  (:body (client/get endpoint))
+  (json/parse-string (:body (client/get endpoint)) true)
 )
 
 
 (defn post_req [endpoint payload]
-  (:body (client/post endpoint
+  (json/parse-string (:body (client/post endpoint
       {:headers {"Content-Type" "application/json"}
-       :body (json/generate-string payload)}
-    )
-  )
+       :body (json/generate-string payload)})) true)
 )
