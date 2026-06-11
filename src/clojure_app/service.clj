@@ -22,7 +22,7 @@
                 weight    (Integer/parseInt (view/read_with_msg "Peso (kg): "))
                 sex       (view/read_with_msg "Sexo (F/M): ")]
         (view/print_msg (:res (api/post_req "http://localhost:3000/user_data"
-                                      {:user_name user_name :age age :height height :weight weight :sex sex})))
+                                {:user_name user_name :age age :height height :weight weight :sex sex})))
       )
       "0" nil ; voltar para o menu
       (view/print_msg "Opcao invalida!")
@@ -48,8 +48,11 @@
       "1" (let [food_name  (view/read_with_msg "Alimento: ")
                 food_value (Integer/parseInt (view/read_with_msg "Quantidade (g): "))
                 date       (view/read_with_msg "Data (dd/MM/yyyy): ")]
-        (view/print_msg (:res (api/post_req "http://localhost:3000/food"
-                                      {:food_name food_name :food_value food_value :date date})))
+        (try
+          (view/print_msg (:res (api/post_req "http://localhost:3000/food"
+                                  {:food_name food_name :food_value food_value :date date})))
+          (catch Exception e (view/print_msg "ERRO na API: o alimento pode nao ter sido encontrado"))
+        )
       )
       "0" nil ; voltar para o menu
       (view/print_msg "Opcao invalida!")
@@ -75,8 +78,11 @@
       "1" (let [activity_name  (view/read_with_msg "Atividade: ")
                 activity_value (Integer/parseInt (view/read_with_msg "Duracao (m): "))
                 date           (view/read_with_msg "Data (dd/MM/yyyy): ")]
-        (view/print_msg (:res (api/post_req "http://localhost:3000/activity"
-                                      {:activity_name activity_name :activity_value activity_value :date date})))
+        (try
+          (view/print_msg (:res (api/post_req "http://localhost:3000/activity"
+                                  {:activity_name activity_name :activity_value activity_value :date date})))
+          (catch Exception e (view/print_msg "ERRO na API: a atividade pode nao ter sido encontrada"))
+        )
       )
       "0" nil ; voltar para o menu
       (view/print_msg "Opcao invalida!")
@@ -104,7 +110,7 @@
       "2" (let [start_date (view/read_with_msg "Data Inicial (dd/MM/yyyy): ")
                 end_date   (view/read_with_msg "Data Final (dd/MM/yyyy): ")]
         (run! view/print_msg (api/post_req "http://localhost:3000/transactions"
-                                      {:start_date start_date :end_date end_date}))
+                                {:start_date start_date :end_date end_date}))
       )
       "0" nil ; voltar para o menu
       (view/print_msg "Opcao invalida!")
@@ -130,8 +136,8 @@
       "1" (view/print_msg (api/get_req "http://localhost:3000/balance"))
       "2" (let [start_date (view/read_with_msg "Data Inicial (dd/MM/yyyy): ")
                 end_date   (view/read_with_msg "Data Final (dd/MM/yyyy): ")]
-            (view/print_msg (api/post_req "http://localhost:3000/balance"
-                                          {:start_date start_date :end_date end_date}))
+        (view/print_msg (api/post_req "http://localhost:3000/balance"
+                          {:start_date start_date :end_date end_date}))
       )
       "0" nil ; voltar para o menu
       (view/print_msg "Opcao invalida!")
