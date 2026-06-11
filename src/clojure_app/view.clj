@@ -33,7 +33,7 @@
         value (:value transaction)
         date  (:date  transaction)]
     (if (pos? kcal)
-      (println "Alimento:"  name ", Qtd:"     value ", Data:" date ", kcal:" kcal)
+      (println "Alimento:"  name ", Gramas:"     value ", Data:" date ", kcal:" kcal)
       (println "Atividade:" name ", Duracao:" value ", Data:" date ", kcal:" kcal)
     )
   )
