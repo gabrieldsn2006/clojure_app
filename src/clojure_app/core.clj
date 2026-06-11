@@ -6,33 +6,33 @@
 
 (defn execute [option]
   (case option
-    "1" (service/user_data)
+    "1" (service/user-data)
     "2" (service/food)
     "3" (service/activity)
     "4" (service/transactions)
     "5" (service/balance)
-    "0" (view/print_msg "Saindo da aplicacao... Ate logo!")
-    (view/print_msg "Opcao Invalida!")
+    "0" (view/print-msg "Saindo da aplicacao... Ate logo!")
+    (view/print-msg "Opcao Invalida!")
   )
 )
 
 
 (defn main_loop []
-  (view/print_msg "\n=======================================")
-  (view/print_msg "       CALCULADORA DE CALORIAS           ")
-  (view/print_msg "=======================================\n")
-  (view/print_msg "1. Cadastrar/Consultar dados pessoais")
-  (view/print_msg "2. Registrar consumo de alimento (Ganho)")
-  (view/print_msg "3. Registrar atividade fisica (Perda)")
-  (view/print_msg "4. Consultar extrato de transacoes")
-  (view/print_msg "5. Consultar saldo de calorias")
-  (view/print_msg "0. Sair")
-  (view/print_msg "\nDigite a opcao desejada: ")
+  (view/print-msg "\n=======================================")
+  (view/print-msg "       CALCULADORA DE CALORIAS           ")
+  (view/print-msg "=======================================\n")
+  (view/print-msg "1. Cadastrar/Consultar dados pessoais")
+  (view/print-msg "2. Registrar consumo de alimento (Ganho)")
+  (view/print-msg "3. Registrar atividade fisica (Perda)")
+  (view/print-msg "4. Consultar extrato de transacoes")
+  (view/print-msg "5. Consultar saldo de calorias")
+  (view/print-msg "0. Sair")
+  (view/print-msg "\nDigite a opcao desejada: ")
 
-  (let [option (view/read_input)]
+  (let [option (view/read-input)]
     (execute option)
     (if (= option "0")
-     (view/print_msg "\nPrograma finalizado.")
+     (view/print-msg "\nPrograma finalizado.")
      (recur)
     )
   )

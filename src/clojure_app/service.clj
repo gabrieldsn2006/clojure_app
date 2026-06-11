@@ -4,28 +4,28 @@
 )
 
 
-(defn user_data []
-  (view/print_msg "\n=======================================")
-  (view/print_msg "           DADOS DO USUARIO              ")
-  (view/print_msg "=======================================\n")
-  (view/print_msg "1. Consultar dados")
-  (view/print_msg "2. Atualizar dados")
-  (view/print_msg "0. Voltar")
-  (view/print_msg "Selecione a opcao desejada: ")
+(defn user-data []
+  (view/print-msg "\n=======================================")
+  (view/print-msg "           DADOS DO USUARIO              ")
+  (view/print-msg "=======================================\n")
+  (view/print-msg "1. Consultar dados")
+  (view/print-msg "2. Atualizar dados")
+  (view/print-msg "0. Voltar")
+  (view/print-msg "Selecione a opcao desejada: ")
 
-  (let [option (view/read_input)]
+  (let [option (view/read-input)]
     (case option
-      "1" (view/print_user_data (api/get_req "http://localhost:3000/user_data"))
-      "2" (let [user_name (view/read_with_msg "Nome: ")
-                age       (Integer/parseInt (view/read_with_msg "Idade: "))
-                height    (Integer/parseInt (view/read_with_msg "Altura (cm): "))
-                weight    (Integer/parseInt (view/read_with_msg "Peso (kg): "))
-                sex       (view/read_with_msg "Sexo (F/M): ")]
-        (view/print_msg (:res (api/post_req "http://localhost:3000/user_data"
-                                            {:user_name user_name :age age :height height :weight weight :sex sex})))
+      "1" (view/print-user-data (api/get-req "http://localhost:3000/user_data"))
+      "2" (let [user-name (view/read-with-msg "Nome: ")
+                age       (Integer/parseInt (view/read-with-msg "Idade: "))
+                height    (Integer/parseInt (view/read-with-msg "Altura (cm): "))
+                weight    (Integer/parseInt (view/read-with-msg "Peso (kg): "))
+                sex       (view/read-with-msg "Sexo (F/M): ")]
+        (view/print-msg (:res (api/post-req "http://localhost:3000/user_data"
+                                            {:user_name user-name :age age :height height :weight weight :sex sex})))
       )
       "0" nil ; voltar para o menu
-      (view/print_msg "Opcao invalida!")
+      (view/print-msg "Opcao invalida!")
     )
     (if (= option "0")
       nil ; voltar para o menu
@@ -36,26 +36,26 @@
 
 
 (defn food []
-  (view/print_msg "\n=======================================")
-  (view/print_msg "           REGISTRAR GANHO               ")
-  (view/print_msg "=======================================\n")
-  (view/print_msg "1. Registrar")
-  (view/print_msg "0. Voltar")
-  (view/print_msg "Selecione a opcao desejada: ")
+  (view/print-msg "\n=======================================")
+  (view/print-msg "           REGISTRAR GANHO               ")
+  (view/print-msg "=======================================\n")
+  (view/print-msg "1. Registrar")
+  (view/print-msg "0. Voltar")
+  (view/print-msg "Selecione a opcao desejada: ")
 
-  (let [option (view/read_input)]
+  (let [option (view/read-input)]
     (case option
-      "1" (let [food_name  (view/read_with_msg "Alimento: ")
-                food_value (Integer/parseInt (view/read_with_msg "Quantidade (g): "))
-                date       (view/read_with_msg "Data (dd/MM/yyyy): ")]
+      "1" (let [food-name  (view/read-with-msg "Alimento: ")
+                food-value (Integer/parseInt (view/read-with-msg "Quantidade (g): "))
+                date       (view/read-with-msg "Data (dd/MM/yyyy): ")]
         (try
-          (view/print_msg (:res (api/post_req "http://localhost:3000/food"
-                                              {:food_name food_name :food_value food_value :date date})))
-          (catch Exception e (view/print_msg "ERRO na API: o alimento pode nao ter sido encontrado"))
+          (view/print-msg (:res (api/post-req "http://localhost:3000/food"
+                                              {:food_name food-name :food_value food-value :date date})))
+          (catch Exception e (view/print-msg "ERRO na API: o alimento pode nao ter sido encontrado"))
         )
       )
       "0" nil ; voltar para o menu
-      (view/print_msg "Opcao invalida!")
+      (view/print-msg "Opcao invalida!")
     )
     (if (= option "0")
       nil ; voltar para o menu
@@ -66,26 +66,26 @@
 
 
 (defn activity []
-  (view/print_msg "\n=======================================")
-  (view/print_msg "           REGISTRAR PERDA               ")
-  (view/print_msg "=======================================\n")
-  (view/print_msg "1. Registrar")
-  (view/print_msg "0. Voltar")
-  (view/print_msg "Selecione a opcao desejada: ")
+  (view/print-msg "\n=======================================")
+  (view/print-msg "           REGISTRAR PERDA               ")
+  (view/print-msg "=======================================\n")
+  (view/print-msg "1. Registrar")
+  (view/print-msg "0. Voltar")
+  (view/print-msg "Selecione a opcao desejada: ")
 
-  (let [option (view/read_input)]
+  (let [option (view/read-input)]
     (case option
-      "1" (let [activity_name  (view/read_with_msg "Atividade: ")
-                activity_value (Integer/parseInt (view/read_with_msg "Duracao (m): "))
-                date           (view/read_with_msg "Data (dd/MM/yyyy): ")]
+      "1" (let [activity-name  (view/read-with-msg "Atividade: ")
+                activity-value (Integer/parseInt (view/read-with-msg "Duracao (m): "))
+                date           (view/read-with-msg "Data (dd/MM/yyyy): ")]
         (try
-          (view/print_msg (:res (api/post_req "http://localhost:3000/activity"
-                                              {:activity_name activity_name :activity_value activity_value :date date})))
-          (catch Exception e (view/print_msg "ERRO na API: a atividade pode nao ter sido encontrada"))
+          (view/print-msg (:res (api/post-req "http://localhost:3000/activity"
+                                              {:activity_name activity-name :activity_value activity-value :date date})))
+          (catch Exception e (view/print-msg "ERRO na API: a atividade pode nao ter sido encontrada"))
         )
       )
       "0" nil ; voltar para o menu
-      (view/print_msg "Opcao invalida!")
+      (view/print-msg "Opcao invalida!")
     )
     (if (= option "0")
       nil ; voltar para o menu
@@ -96,24 +96,24 @@
 
 
 (defn transactions []
-  (view/print_msg "\n=======================================")
-  (view/print_msg "        EXTRATO DE TRANSACOES            ")
-  (view/print_msg "=======================================\n")
-  (view/print_msg "1. Consultar todas transacoes")
-  (view/print_msg "2. Consultar por periodo")
-  (view/print_msg "0. Voltar")
-  (view/print_msg "Selecione a opcao desejada: ")
+  (view/print-msg "\n=======================================")
+  (view/print-msg "        EXTRATO DE TRANSACOES            ")
+  (view/print-msg "=======================================\n")
+  (view/print-msg "1. Consultar todas transacoes")
+  (view/print-msg "2. Consultar por periodo")
+  (view/print-msg "0. Voltar")
+  (view/print-msg "Selecione a opcao desejada: ")
 
-  (let [option (view/read_input)]
+  (let [option (view/read-input)]
     (case option
-      "1" (run! view/print_transaction (api/get_req "http://localhost:3000/transactions"))
-      "2" (let [start_date (view/read_with_msg "Data Inicial (dd/MM/yyyy): ")
-                end_date   (view/read_with_msg "Data Final (dd/MM/yyyy): ")]
-        (run! view/print_transaction (api/post_req "http://localhost:3000/transactions"
-                                                   {:start_date start_date :end_date end_date}))
+      "1" (run! view/print-transaction (api/get-req "http://localhost:3000/transactions"))
+      "2" (let [start-date (view/read-with-msg "Data Inicial (dd/MM/yyyy): ")
+                end-date   (view/read-with-msg "Data Final (dd/MM/yyyy): ")]
+        (run! view/print-transaction (api/post-req "http://localhost:3000/transactions"
+                                                   {:start_date start-date :end_date end-date}))
       )
       "0" nil ; voltar para o menu
-      (view/print_msg "Opcao invalida!")
+      (view/print-msg "Opcao invalida!")
     )
     (if (= option "0")
       nil ; voltar para o menu
@@ -124,23 +124,23 @@
 
 
 (defn balance []
-  (view/print_msg "\n=======================================")
-  (view/print_msg "          SALDO DE CALORIAS              ")
-  (view/print_msg "=======================================\n")
-  (view/print_msg "1. Consultar saldo atual")
-  (view/print_msg "2. Consultar saldo por periodo")
-  (view/print_msg "0. Voltar")
-  (view/print_msg "Selecione a opcao desejada: ")
-  (let [option (view/read_input)]
+  (view/print-msg "\n=======================================")
+  (view/print-msg "          SALDO DE CALORIAS              ")
+  (view/print-msg "=======================================\n")
+  (view/print-msg "1. Consultar saldo atual")
+  (view/print-msg "2. Consultar saldo por periodo")
+  (view/print-msg "0. Voltar")
+  (view/print-msg "Selecione a opcao desejada: ")
+  (let [option (view/read-input)]
     (case option
-      "1" (view/print_msg (api/get_req "http://localhost:3000/balance"))
-      "2" (let [start_date (view/read_with_msg "Data Inicial (dd/MM/yyyy): ")
-                end_date   (view/read_with_msg "Data Final (dd/MM/yyyy): ")]
-        (view/print_msg (api/post_req "http://localhost:3000/balance"
-                                      {:start_date start_date :end_date end_date}))
+      "1" (view/print-msg (api/get-req "http://localhost:3000/balance"))
+      "2" (let [start-date (view/read-with-msg "Data Inicial (dd/MM/yyyy): ")
+                end-date   (view/read-with-msg "Data Final (dd/MM/yyyy): ")]
+        (view/print-msg (api/post-req "http://localhost:3000/balance"
+                                      {:start_date start-date :end_date end-date}))
       )
       "0" nil ; voltar para o menu
-      (view/print_msg "Opcao invalida!")
+      (view/print-msg "Opcao invalida!")
     )
     (if (= option "0")
       nil ; voltar para o menu
